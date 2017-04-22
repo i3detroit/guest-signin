@@ -1,0 +1,4 @@
+AuthUserFile /home/i3/www/whysman/i3-signin/admin/.htpasswd
+AuthName "Sign-in Admin"
+AuthType Basic
+require valid-user
