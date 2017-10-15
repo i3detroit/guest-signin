@@ -8,16 +8,19 @@ require 'header.php';
 
 $first = isset($_POST['first']) && !empty($_POST['first']) ? $_POST['first'] : null;
 $last = isset($_POST['last']) && !empty($_POST['last']) ? $_POST['last'] : null;
-$q1 = isset($_POST['q1']) ? $_POST['q1'] : null;
-$q2 = isset($_POST['q2']) ? $_POST['q2'] : null;
-$q3 = isset($_POST['q3']) ? $_POST['q3'] : null;
-$q4 = isset($_POST['q4']) ? $_POST['q4'] : null;
+$q1 = isset($_POST['q1']) && !empty($_POST['q1']) ? $_POST['q1'] : null;
+$q2 = isset($_POST['q2']) && !empty($_POST['q2']) ? $_POST['q2'] : null;
+$q3 = isset($_POST['q3']) && !empty($_POST['q3']) ? $_POST['q3'] : null;
+$q4 = isset($_POST['q4']) && !empty($_POST['q4']) ? $_POST['q4'] : null;
 $ph = isset($_POST['ph']) && !empty($_POST['ph']) ? $_POST['ph'] : null;
 $addr = isset($_POST['addr']) && !empty($_POST['addr']) ? $_POST['addr'] : null;
 $emcon = isset($_POST['emcon']) && !empty($_POST['emcon']) ? $_POST['emcon'] : null;
 $emph = isset($_POST['emph']) && !empty($_POST['emph']) ? $_POST['emph'] : null;
 $emr = isset($_POST['emr']) && !empty($_POST['emr']) ? $_POST['emr'] : null;
 $sigdata = isset($_POST['sigdata']) && !empty($_POST['sigdata']) ? $_POST['sigdata'] : null;
+
+$submit_success = false;
+$have_any_data = false;
 
 if(
     $first != null &&
@@ -35,12 +38,11 @@ if(
 ) {
     //WE HAVE DATA
 
-    echo "<div data-role='content' style='padding: 15px'>\n";
-    echo "<div data-role='page' id='pMain'>\n";
     require 'password.php';
     $conn = mysqli_connect($mysqlHost, $mysqlUser, $mysqlPass, $mysqlDB);
     if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+        echo "Connection failed: " . $conn->connect_error;
+        exit;
     }
 
     //echo 'Connected successfully';
@@ -63,43 +65,63 @@ if(
     //echo $sql;
 
     if ($conn->query($sql) === TRUE) {
-
-    echo "New record created successfully";
-    echo "<script>";
-   // echo "window.location.replace(\"https://www.i3detroit.org/whysman/i3-signin/\");";
-    echo "</script>";
+        $submit_success = true;
     } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: " . $sql . "<br>" . $conn->error;
+        exit;
     }
 
     $conn->close();
-    echo "</div></div>";
-    require 'footer.php';
-} else {
-    //Don't have data, or it's missing.
-    //HTML in a fucking if. Fuck you PHP
-    $have_any_data =
-        $first != null ||
-        $last != null ||
-        $q1 != null ||
-        $q2 != null ||
-        $q3 != null ||
-        $q4 != null ||
-        $ph != null ||
-        $addr != null ||
-        $emcon != null ||
-        $emph != null ||
-        $emr != null ||
-        $sigdata != null;
+}
+
+//We submitted, clear data so we don't put it back in form
+if($submit_success) {
+    $first = null;
+    $last = null;
+    $q1 = null;
+    $q2 = null;
+    $q3 = null;
+    $q4 = null;
+    $ph = null;
+    $addr = null;
+    $emcon = null;
+    $emph = null;
+    $emr = null;
+    $sigdata = null;
+}
+
+$have_any_data =
+    $first != null ||
+    $last != null ||
+    $q1 != null ||
+    $q2 != null ||
+    $q3 != null ||
+    $q4 != null ||
+    $ph != null ||
+    $addr != null ||
+    $emcon != null ||
+    $emph != null ||
+    $emr != null ||
+    $sigdata != null;
 ?>
 <div data-role='page' id='pMain'>
     <div data-role='content' style='padding: 15px'>
         <img style="position: relative;max-width: 50%;width: auto\9;" src="i3logo.jpg">
 
 <?PHP
+    if($submit_success) {
+?>
+<div style="background-color: green; height: 30px;">
+    Submission Accepted
+</div>
+<?PHP
+    }
+?>
+
+<?PHP
     if($have_any_data) {
 ?>
-<div style="background-color: red">
+<div style="background-color: red; height: 30px;">
 SUBMIT BETTER PLEASE
 </div>
 <?PHP
@@ -184,5 +206,4 @@ $(document).ready(function() {
 
 <?php
     require 'footer.php';
-}// end no data or missing data
 ?>
