@@ -6,18 +6,18 @@
 
 require 'header.php';
 
-$first = !empty($_POST['first']) ? $_POST['first'] : null;
-$last = !empty($_POST['last']) ? $_POST['last'] : null;
-$q1 = !empty($_POST['q1']) ? $_POST['q1'] : null;
-$q2 = !empty($_POST['q2']) ? $_POST['q2'] : null;
-$q3 = !empty($_POST['q3']) ? $_POST['q3'] : null;
-$q4 = !empty($_POST['q4']) ? $_POST['q4'] : null;
-$ph = !empty($_POST['ph']) ? $_POST['ph'] : null;
-$addr = !empty($_POST['addr']) ? $_POST['addr'] : null;
-$emcon = !empty($_POST['emcon']) ? $_POST['emcon'] : null;
-$emph = !empty($_POST['emph']) ? $_POST['emph'] : null;
-$emr = !empty($_POST['emr']) ? $_POST['emr'] : null;
-$sigdata = !empty($_POST['sigdata']) ? $_POST['sigdata'] : null;
+$first = isset($_POST['first']) && !empty($_POST['first']) ? $_POST['first'] : null;
+$last = isset($_POST['last']) && !empty($_POST['last']) ? $_POST['last'] : null;
+$q1 = isset($_POST['q1']) ? $_POST['q1'] : null;
+$q2 = isset($_POST['q2']) ? $_POST['q2'] : null;
+$q3 = isset($_POST['q3']) ? $_POST['q3'] : null;
+$q4 = isset($_POST['q4']) ? $_POST['q4'] : null;
+$ph = isset($_POST['ph']) && !empty($_POST['ph']) ? $_POST['ph'] : null;
+$addr = isset($_POST['addr']) && !empty($_POST['addr']) ? $_POST['addr'] : null;
+$emcon = isset($_POST['emcon']) && !empty($_POST['emcon']) ? $_POST['emcon'] : null;
+$emph = isset($_POST['emph']) && !empty($_POST['emph']) ? $_POST['emph'] : null;
+$emr = isset($_POST['emr']) && !empty($_POST['emr']) ? $_POST['emr'] : null;
+$sigdata = isset($_POST['sigdata']) && !empty($_POST['sigdata']) ? $_POST['sigdata'] : null;
 
 if(
     $first != null &&
@@ -34,6 +34,7 @@ if(
     $sigdata != null
 ) {
     //WE HAVE DATA
+
     echo "<div data-role='content' style='padding: 15px'>\n";
     echo "<div data-role='page' id='pMain'>\n";
     require 'password.php';
@@ -65,7 +66,7 @@ if(
 
     echo "New record created successfully";
     echo "<script>";
-    echo "window.location.replace(\"https://www.i3detroit.org/whysman/i3-signin/\");";
+   // echo "window.location.replace(\"https://www.i3detroit.org/whysman/i3-signin/\");";
     echo "</script>";
     } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
@@ -77,35 +78,58 @@ if(
 } else {
     //Don't have data, or it's missing.
     //HTML in a fucking if. Fuck you PHP
+    $have_any_data =
+        $first != null ||
+        $last != null ||
+        $q1 != null ||
+        $q2 != null ||
+        $q3 != null ||
+        $q4 != null ||
+        $ph != null ||
+        $addr != null ||
+        $emcon != null ||
+        $emph != null ||
+        $emr != null ||
+        $sigdata != null;
 ?>
-<div data-role='page' id='pMain'>\
-    <div data-role='content' style='padding: 15px'>\
+<div data-role='page' id='pMain'>
+    <div data-role='content' style='padding: 15px'>
         <img style="position: relative;max-width: 50%;width: auto\9;" src="i3logo.jpg">
+
+<?PHP
+    if($have_any_data) {
+?>
+<div style="background-color: red">
+SUBMIT BETTER PLEASE
+</div>
+<?PHP
+    }
+?>
 
         <h1>Liability Release:</h1><br>
 
         <h3>Between and i3 Detroit, NFP, 1481A Wordsworth Ferndale, MI 48220 ("i3 Detroit") and</h3>
 
-        <form action="index.php" method="post">
+        <form action="#" method="post">
 
         <div data-role="fieldcontain" class="ui-hide-label"><input type="text" name="first" id="first" value="<?PHP echo $first ?>" placeholder="First"/></div>
 
-        <div data-role="fieldcontain" class="ui-hide-label"><input type="text" name="last" id="last" value="<?PHP echo $echo last ?>" placeholder="Last"/></div>
+        <div data-role="fieldcontain" class="ui-hide-label"><input type="text" name="last" id="last" value="<?PHP echo $last ?>" placeholder="Last"/></div>
 
         <table>
         <tr><td width="10%">
-            <select name="q1" id="q1" data-role="slider" value="<?PHP echo $q1 ?>">
-            <option value="0">No</option>
-            <option value="1">Yes</option>
+            <select name="q1" id="q1" data-role="slider">
+            <option value="0" <?PHP echo $q1 === "0" ? 'selected="selected"' : '' ?>>No</option>
+            <option value="1" <?PHP echo $q1 === "1" ? 'selected="selected"' : '' ?>>Yes</option>
             </select></td></td>
         <td>By signing this agreement, I acknowledge that i3 Detroit is a dangerous place and I agree to HOLD HARMLESS i3 Detroit, its members, its officers, and its directors.</td>
         </tr>
 
 
         <tr><td width="10%">
-            <select name="q2" id="q2" data-role="slider" value="<?PHP echo $q2 ?>">
-            <option value="0">No</option>
-            <option value="1">Yes</option>
+            <select name="q2" id="q2" data-role="slider">
+            <option value="0" <?PHP echo $q2 === "0" ? 'selected="selected"' : '' ?>>No</option>
+            <option value="1" <?PHP echo $q2 === "1" ? 'selected="selected"' : '' ?>>Yes</option>
             </select></td>
             <td>I understand that I am personally responsible for my safety and actions. I will follow all safety instructions and signage at i3 Detroit.</td>
 
@@ -113,9 +137,9 @@ if(
 
 
         <tr><td width="10%">
-            <select name="q3" id="q3" data-role="slider" value="<?PHP echo $q3 ?>">
-            <option value="0">No</option>
-            <option value="1">Yes</option>
+            <select name="q3" id="q3" data-role="slider">
+            <option value="0" <?PHP echo $q3 === "0" ? 'selected="selected"' : '' ?>>No</option>
+            <option value="1" <?PHP echo $q3 === "1" ? 'selected="selected"' : '' ?>>Yes</option>
             </select></td>
             <td>I also understand that I am responsible for properly monitoring and labeling anything I bring to i3 Detroit and that i3 Detroit is not responsible for any lost, damaged, or stolen property.</td>
 
@@ -123,9 +147,9 @@ if(
 
 
         <tr><td width="10%">
-            <select name="q4" id="q4" data-role="slider" value="<?PHP echo $q4 ?>">
-            <option value="0">No</option>
-            <option value="1">Yes</option>
+            <select name="q4" id="q4" data-role="slider">
+            <option value="0" <?PHP echo $q4 === "0" ? 'selected="selected"' : '' ?>>No</option>
+            <option value="1" <?PHP echo $q4 === "1" ? 'selected="selected"' : '' ?>>Yes</option>
             </select></td>
             <td>I affirm that I am 18 years of age or older, and that I am mentally competent to sign this release.</td>
 
