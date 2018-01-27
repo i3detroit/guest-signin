@@ -190,6 +190,7 @@ SUBMIT BETTER PLEASE
         <input type="hidden" id="sigdata" name="sigdata" />
 
         <input value="Submit" type="submit" id="submit" />
+        <input type="button" value="Reset Form" onClick="window.location.reload()">
         </form>
     </div>
 </div>
