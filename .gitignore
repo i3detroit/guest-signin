@@ -3,3 +3,4 @@ data.csv
 broken
 old
 *.bak
+.env
