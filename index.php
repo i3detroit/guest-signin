@@ -1,8 +1,4 @@
 <?php
-/**
- * First off, I'm sorry.
- * I'm not fixing this, just making it refuse missing data
- **/
 
 require 'header.php';
 
@@ -49,15 +45,16 @@ if(
     //echo "Hello\n";
     //var_dump($_GET);
     // hah security, what's that.
-    $sql = "INSERT INTO waiver_data (fname, lname, assent1, assent2, assent3, assent4, phone, address, ec_name, ec_phone, ec_relate, signature) VALUES ('" .
+    $sql = "INSERT INTO waiver_data (fname, lname, assent1, assent2, assent3, assent4, assent5, phone, email, ec_name, ec_phone, ec_relate, signature) VALUES ('" .
     mysqli_real_escape_string($conn, $first) . "','" .
     mysqli_real_escape_string($conn, $last) . "'," .
     mysqli_real_escape_string($conn, $q1) . "," .
     mysqli_real_escape_string($conn, $q2) . "," .
     mysqli_real_escape_string($conn, $q3) . "," .
     mysqli_real_escape_string($conn, $q4) . ",'" .
+    mysqli_real_escape_string($conn, $q5) . ",'" .
     mysqli_real_escape_string($conn, $ph) . "','" .
-    mysqli_real_escape_string($conn, $addr) . "','" .
+    mysqli_real_escape_string($conn, $email) . "','" .
     mysqli_real_escape_string($conn, $emcon) . "','" .
     mysqli_real_escape_string($conn, $emph) . "','"    .
     mysqli_real_escape_string($conn, $emr) . "','" .
@@ -122,17 +119,18 @@ $have_any_data =
     if($have_any_data) {
 ?>
 <div style="background-color: red; height: 30px;">
-SUBMIT BETTER PLEASE
+    Please fill out all fields and accept all conditions.
 </div>
 <?PHP
     }
 ?>
 
+        <h1>Beginning on May 29th, 2020 all previous waivers are invalid.  If you have not filled out a waiver since that date you will need to do so again.</h1>
+
         <h1>Liability Release:</h1><br>
 
-        <h3>Between and i3 Detroit, NFP, 1481A Wordsworth Ferndale, MI 48220 ("i3 Detroit") and</h3>
-
         <form action="#" method="post">
+        <h3>Between i3Detroit, Nonprofit Corporation, 1481A Wordsworth Ferndale, MI 48220 ("i3Detroit") and</h3>
 
         <div data-role="fieldcontain" class="ui-hide-label"><input type="text" name="first" id="first" value="<?PHP echo $first ?>" placeholder="First"/></div>
 
@@ -144,7 +142,7 @@ SUBMIT BETTER PLEASE
             <option value="0" <?PHP echo $q1 === "0" ? 'selected="selected"' : '' ?>>No</option>
             <option value="1" <?PHP echo $q1 === "1" ? 'selected="selected"' : '' ?>>Yes</option>
             </select></td></td>
-        <td>By signing this agreement, I acknowledge that i3 Detroit is a dangerous place and I agree to HOLD HARMLESS i3 Detroit, its members, its officers, and its directors.</td>
+        <td>By signing this agreement, I acknowledge that i3Detroit is a dangerous place and I agree to hold harmless i3Detroit, its members, its officers, and its directors.</td>
         </tr>
 
 
@@ -153,8 +151,7 @@ SUBMIT BETTER PLEASE
             <option value="0" <?PHP echo $q2 === "0" ? 'selected="selected"' : '' ?>>No</option>
             <option value="1" <?PHP echo $q2 === "1" ? 'selected="selected"' : '' ?>>Yes</option>
             </select></td>
-            <td>I understand that I am personally responsible for my safety and actions. I will follow all safety instructions and signage at i3 Detroit.</td>
-
+            <td>I understand that I am personally responsible for my safety and actions. I will follow all safety instructions and signage at i3Detroit.</td>
         </tr>
 
 
@@ -163,24 +160,28 @@ SUBMIT BETTER PLEASE
             <option value="0" <?PHP echo $q3 === "0" ? 'selected="selected"' : '' ?>>No</option>
             <option value="1" <?PHP echo $q3 === "1" ? 'selected="selected"' : '' ?>>Yes</option>
             </select></td>
-            <td>I also understand that I am responsible for properly monitoring and labeling anything I bring to i3 Detroit and that i3 Detroit is not responsible for any lost, damaged, or stolen property.</td>
-
+            <td>I also understand that I am responsible for properly monitoring and labeling anything I bring to i3Detroit and that i3Detroit is not responsible for any lost, damaged, or stolen property.</td>
         </tr>
-
 
         <tr><td width="10%">
             <select name="q4" id="q4" data-role="slider">
             <option value="0" <?PHP echo $q4 === "0" ? 'selected="selected"' : '' ?>>No</option>
             <option value="1" <?PHP echo $q4 === "1" ? 'selected="selected"' : '' ?>>Yes</option>
             </select></td>
+            <td>I understand that I may be exposed to communicable diseases while at i3Detroit and I release i3Detroit from any liability should I contract such a disease.</td>
+        </tr>
+
+        <tr><td width="10%">
+            <select name="q5" id="q5" data-role="slider">
+            <option value="0" <?PHP echo $q5 === "0" ? 'selected="selected"' : '' ?>>No</option>
+            <option value="1" <?PHP echo $q5 === "1" ? 'selected="selected"' : '' ?>>Yes</option>
+            </select></td>
             <td>I affirm that I am 18 years of age or older, and that I am mentally competent to sign this release.</td>
-
-
         </tr>
         </table>
 
         <div data-role="fieldcontain" class="ui-hide-label"><input type="text" name="ph" id="ph" value="<?PHP echo $ph ?>" placeholder="Phone Number"/></div>
-        <div data-role="fieldcontain" class="ui-hide-label"><input type="text" name="addr" id="addr" value="<?PHP echo $addr ?>" placeholder="Address"/></div>
+        <div data-role="fieldcontain" class="ui-hide-label"><input type="text" name="email" id="email" value="<?PHP echo $email ?>" placeholder="Email Address"/></div>
         <div data-role="fieldcontain" class="ui-hide-label"><input type="text" name="emcon" id="emcon" value="<?PHP echo $emcon ?>" placeholder="Emergency Contact Name"/></div>
         <div data-role="fieldcontain" class="ui-hide-label"><input type="text" name="emph" id="emph" value="<?PHP echo $emph ?>" placeholder="Emergency Contact Phone Number"/></div>
         <div data-role="fieldcontain" class="ui-hide-label"><input type="text" name="emr" id="emr" value="<?PHP echo $emr ?>" placeholder="Emergency Contact Relationship"/></div>
