@@ -53,7 +53,7 @@ if(
     mysqli_real_escape_string($conn, $q1) . "," .
     mysqli_real_escape_string($conn, $q2) . "," .
     mysqli_real_escape_string($conn, $q3) . "," .
-    mysqli_real_escape_string($conn, $q4) . ",'" .
+    mysqli_real_escape_string($conn, $q4) . "," .
     mysqli_real_escape_string($conn, $q5) . ",'" .
     mysqli_real_escape_string($conn, $ph) . "','" .
     mysqli_real_escape_string($conn, $email) . "','" .
