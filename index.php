@@ -184,11 +184,31 @@ $have_any_data =
         </tr>
         </table>
 
-        <div data-role="fieldcontain" class="ui-hide-label"><input type="text" name="ph" id="ph" value="<?PHP echo $ph ?>" placeholder="Phone Number"/></div>
-        <div data-role="fieldcontain" class="ui-hide-label"><input type="text" name="email" id="email" value="<?PHP echo $email ?>" placeholder="Email Address"/></div>
-        <div data-role="fieldcontain" class="ui-hide-label"><input type="text" name="emcon" id="emcon" value="<?PHP echo $emcon ?>" placeholder="Emergency Contact Name"/></div>
-        <div data-role="fieldcontain" class="ui-hide-label"><input type="text" name="emph" id="emph" value="<?PHP echo $emph ?>" placeholder="Emergency Contact Phone Number"/></div>
-        <div data-role="fieldcontain" class="ui-hide-label"><input type="text" name="emr" id="emr" value="<?PHP echo $emr ?>" placeholder="Emergency Contact Relationship"/></div>
+        <div data-role="fieldcontain">
+            <label for="ph">Phone Number</label>
+            <br>
+            <input type="text" name="ph" id="ph" value="<?PHP echo $ph ?>" placeholder="Phone Number"/>
+        </div>
+        <div data-role="fieldcontain">
+            <label for="email">Email</label>
+            <br>
+            <input type="text" name="email" id="email" value="<?PHP echo $email ?>" placeholder="Email Address"/>
+        </div>
+        <div data-role="fieldcontain">
+            <label for="emcon">Emergency Contact Name</label>
+            <br>
+            <input type="text" name="emcon" id="emcon" value="<?PHP echo $emcon ?>" placeholder="Emergency Contact Name"/>
+        </div>
+        <div data-role="fieldcontain">
+            <label for="emph">Emergency Contact Phone Number</label>
+            <br>
+            <input type="text" name="emph" id="emph" value="<?PHP echo $emph ?>" placeholder="Emergency Contact Phone Number"/>
+        </div>
+        <div data-role="fieldcontain">
+            <label for="emr">Emergency Contact Relationship</label>
+            <br>
+            <input type="text" name="emr" id="emr" value="<?PHP echo $emr ?>" placeholder="Emergency Contact Relationship"/>
+        </div>
 
         <h3>Signature</h3>
         <div id="signature"></div>
