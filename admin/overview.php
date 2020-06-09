@@ -12,12 +12,8 @@
 		echo "<tr>";
 		echo "<td>" . $row['fname'] . "</td>";
 		echo "<td>" . $row['lname'] . "</td>";
-		echo "<td>" . $row['assent1'] . "</td>";
-		echo "<td>" . $row['assent2'] . "</td>";
-		echo "<td>" . $row['assent3'] . "</td>";
-		echo "<td>" . $row['assent4'] . "</td>";
 		echo "<td>" . $row['phone'] . "</td>";
-		echo "<td>" . $row['address'] . "</td>";
+		echo "<td>" . $row['email'] . "</td>";
 		echo "<td>" . $row['ec_name'] . "</td>";
 		echo "<td>" . $row['ec_phone'] . "</td>";
 		echo "<td>" . $row['ec_relate'] . "</td>";
