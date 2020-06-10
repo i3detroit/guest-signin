@@ -187,13 +187,13 @@ $have_any_data =
 
         <div><b>Emergency Contact Info</b></div>
         <div data-role="fieldcontain">
-            <input type="text" name="emcon" id="emcon" value="<?PHP echo $emcon ?>" placeholder="Emergency Contact Name"/>
+            <input type="text" name="emcon" id="emcon" value="<?PHP echo $emcon ?>" placeholder="Name"/>
         </div>
         <div data-role="fieldcontain">
-            <input type="text" name="emph" id="emph" value="<?PHP echo $emph ?>" placeholder="Emergency Contact Phone Number"/>
+            <input type="text" name="emph" id="emph" value="<?PHP echo $emph ?>" placeholder="Phone Number"/>
         </div>
         <div data-role="fieldcontain">
-            <input type="text" name="emr" id="emr" value="<?PHP echo $emr ?>" placeholder="Emergency Contact Relationship"/>
+            <input type="text" name="emr" id="emr" value="<?PHP echo $emr ?>" placeholder="Relationship"/>
         </div>
 
         <h3>Signature</h3>
