@@ -139,7 +139,8 @@ $have_any_data =
         <div data-role="fieldcontain" class="ui-hide-label"><input type="text" name="first" id="first" value="<?PHP echo $first ?>" placeholder="First"/></div>
 
         <div data-role="fieldcontain" class="ui-hide-label"><input type="text" name="last" id="last" value="<?PHP echo $last ?>" placeholder="Last"/></div>
-
+        <div data-role="fieldcontain"><input type="text" name="ph" id="ph" value="<?PHP echo $ph ?>" placeholder="Phone Number"/></div>
+        <div data-role="fieldcontain"><input type="text" name="email" id="email" value="<?PHP echo $email ?>" placeholder="Email Address"/></div>
         <table>
         <tr><td width="10%">
             <select name="q1" id="q1" data-role="slider">
@@ -184,30 +185,15 @@ $have_any_data =
         </tr>
         </table>
 
+        <div><b>Emergency Contact Info</b></div>
         <div data-role="fieldcontain">
-            <label for="ph">Phone Number</label>
-            <br>
-            <input type="text" name="ph" id="ph" value="<?PHP echo $ph ?>" placeholder="Phone Number"/>
+            <input type="text" name="emcon" id="emcon" value="<?PHP echo $emcon ?>" placeholder="Name"/>
         </div>
         <div data-role="fieldcontain">
-            <label for="email">Email</label>
-            <br>
-            <input type="text" name="email" id="email" value="<?PHP echo $email ?>" placeholder="Email Address"/>
+            <input type="text" name="emph" id="emph" value="<?PHP echo $emph ?>" placeholder="Phone Number"/>
         </div>
         <div data-role="fieldcontain">
-            <label for="emcon">Emergency Contact Name</label>
-            <br>
-            <input type="text" name="emcon" id="emcon" value="<?PHP echo $emcon ?>" placeholder="Emergency Contact Name"/>
-        </div>
-        <div data-role="fieldcontain">
-            <label for="emph">Emergency Contact Phone Number</label>
-            <br>
-            <input type="text" name="emph" id="emph" value="<?PHP echo $emph ?>" placeholder="Emergency Contact Phone Number"/>
-        </div>
-        <div data-role="fieldcontain">
-            <label for="emr">Emergency Contact Relationship</label>
-            <br>
-            <input type="text" name="emr" id="emr" value="<?PHP echo $emr ?>" placeholder="Emergency Contact Relationship"/>
+            <input type="text" name="emr" id="emr" value="<?PHP echo $emr ?>" placeholder="Relationship"/>
         </div>
 
         <h3>Signature</h3>
