@@ -12,6 +12,7 @@
 		echo "<tr>";
 		echo "<td>" . $row['fname'] . "</td>";
 		echo "<td>" . $row['lname'] . "</td>";
+		echo "<td>" . $row['timestamp'] . "</td>";
 		echo "<td>" . $row['email'] . "</td>";
 		echo "<td>" . $row['phone'] . "</td>";
 		echo "<td>" . $row['ec_name'] . "</td>";
